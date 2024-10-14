@@ -14,6 +14,9 @@
 
 \usepackage{epstopdf, longtable}
 \usepackage{multicol}
+\usepackage[backend=biber,style=apa]{biblatex} % Use APA style
+\addbibresource{bib/acb_transcription.bib}  % Add the correct bibliography file
+
 \setlength{\columnsep}{3em}
 \articletype{acb} % article type
 % {inv} Investigation
@@ -95,10 +98,8 @@ Present and discuss results only once, not in both the Results and Discussion se
 %\vspace*{1em}
 %\table1{\textwidth}{Student Grades per rank}
 
-
-\bibliography{bib/acb_transcription}
-%\bibliography{bib/acb_nucleus}
-%\bibliography{bib/acb_nucleosomes}
+% Create the bibliography
+\printbibliography
 
 
 \end{document} 

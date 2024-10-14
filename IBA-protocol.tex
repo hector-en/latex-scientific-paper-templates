@@ -14,6 +14,9 @@
 
 \usepackage{epstopdf}
 \usepackage{multicol}
+\usepackage[backend=biber,style=apa]{biblatex} % Use APA style
+\addbibresource{bib/iba.bib}  % Add the correct bibliography file
+
 \setlength{\columnsep}{1.4em}
 \articletype{iba} % article type
 % {inv} Investigation
@@ -93,8 +96,9 @@ We can conclude this from our findings because\textit{ M. smegmatis} could be su
 
 \section{Acknowledgments}
 The author acknowledges the PhD students and laboratory staff involved in organizing the laboratory session for cryo-preservation of\textit{ M. smegmatis} cultures, the preparation of the starter cultures and the treatment of the culture with INH, ETH, and Unknown Drug (NCE). The author also acknowledges Dr. Sanjib Bhakta, and the laboratory groups for supplying the figures and OD data used in this article. 
-\bibliographystyle{apa-like} %havard: agsm
-\bibliography{bib/iba}
+
+% Create the bibliography
+\printbibliography
 
 \end{multicols}
 \end{document} 
