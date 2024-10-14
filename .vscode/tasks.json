@@ -1,0 +1,109 @@
+{
+
+        // This file defines multiple tasks to build LaTeX documents using different workflows.
+        // Each task creates an output directory (`./out`), sets necessary permissions,
+        // and runs a specific LaTeX build command such as:
+        //  - pdflatex: Standard PDF generation.
+        //  - xelatex: For Unicode and system fonts.
+        //  - lualatex: For Unicode and Lua scripting support.
+        //  - latex -> dvips -> ps2pdf: Traditional DVI to PDF conversion.
+        //  - Open Gummi: Opens the LaTeX file in Gummi for live preview.
+        //
+        // You can execute these tasks from VS Code’s task runner (Ctrl+Shift+B) 
+        // or by using custom shortcuts as defined in `settings.json`.
+        // Each task will output the resulting files to the `./out` directory.
+
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build with pdflatex",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-c",
+                "mkdir -p ./out && chmod u+w ./out && pdflatex -interaction=nonstopmode -synctex=1 -output-directory=./out ${file}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "Build with xelatex",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-c",
+                "mkdir -p ./out && chmod u+w ./out && xelatex -interaction=nonstopmode -synctex=1 -output-directory=./out ${file}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "Build with lualatex",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-c",
+                "mkdir -p ./out && chmod u+w ./out && lualatex -interaction=nonstopmode -synctex=1 -output-directory=./out ${file}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "Build with latex -> dvips -> ps2pdf",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-c",
+                "mkdir -p ./out && chmod u+w ./out && latex -interaction=nonstopmode -output-directory=./out ${file} && dvips ./out/${fileBasenameNoExtension}.dvi -o ./out/${fileBasenameNoExtension}.ps && ps2pdf ./out/${fileBasenameNoExtension}.ps ./out/${fileBasenameNoExtension}.pdf"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "Open in Gummi (Live Preview)",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-c",
+                "gummi ${file}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        }
+    ]
+}
