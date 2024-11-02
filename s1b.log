@@ -1,0 +1,98 @@
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2024.10.14)  16 OCT 2024 02:08
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**/home/vmuser/basic-protocol/styles/s1b.sty
+(/home/vmuser/basic-protocol/styles/s1b.sty
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-01-21>
+
+LaTeX Warning: You have requested package `',
+               but the package provides `styles/s1b'.
+
+Package: styles/s1b 2015/03/31 v1.2 GSA Genetics Journal Genetics of Immunity s
+tyle
+! Undefined control sequence.
+l.24 \definecolor
+                 {color2}{RGB}{0, 62, 116} % Imperial Blue
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.24 \definecolor{c
+                   olor2}{RGB}{0, 62, 116} % Imperial Blue
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no c ("63) in font nullfont!
+Missing character: There is no o ("6F) in font nullfont!
+Missing character: There is no l ("6C) in font nullfont!
+Missing character: There is no o ("6F) in font nullfont!
+Missing character: There is no r ("72) in font nullfont!
+Missing character: There is no 2 ("32) in font nullfont!
+Missing character: There is no R ("52) in font nullfont!
+Missing character: There is no G ("47) in font nullfont!
+Missing character: There is no B ("42) in font nullfont!
+Missing character: There is no 0 ("30) in font nullfont!
+Missing character: There is no , ("2C) in font nullfont!
+Missing character: There is no 6 ("36) in font nullfont!
+Missing character: There is no 2 ("32) in font nullfont!
+Missing character: There is no , ("2C) in font nullfont!
+Missing character: There is no 1 ("31) in font nullfont!
+Missing character: There is no 1 ("31) in font nullfont!
+Missing character: There is no 6 ("36) in font nullfont!
+! Undefined control sequence.
+l.25 \definecolor
+                 {color3}{RGB}{0, 33, 71}  % Imperial Navy
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c ("63) in font nullfont!
+Missing character: There is no o ("6F) in font nullfont!
+Missing character: There is no l ("6C) in font nullfont!
+Missing character: There is no o ("6F) in font nullfont!
+Missing character: There is no r ("72) in font nullfont!
+Missing character: There is no 3 ("33) in font nullfont!
+Missing character: There is no R ("52) in font nullfont!
+Missing character: There is no G ("47) in font nullfont!
+Missing character: There is no B ("42) in font nullfont!
+Missing character: There is no 0 ("30) in font nullfont!
+Missing character: There is no , ("2C) in font nullfont!
+Missing character: There is no 3 ("33) in font nullfont!
+Missing character: There is no 3 ("33) in font nullfont!
+Missing character: There is no , ("2C) in font nullfont!
+Missing character: There is no 7 ("37) in font nullfont!
+Missing character: There is no 1 ("31) in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 24--26
+[]
+ []
+
+)
+! Emergency stop.
+<*> /home/vmuser/basic-protocol/styles/s1b.sty
+                                              
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 30 strings out of 478073
+ 515 string characters out of 5850313
+ 290713 words of memory out of 5000000
+ 20767 multiletter control sequences out of 15000+600000
+ 469259 words of font info for 28 fonts, out of 8000000 for 9000
+ 36 hyphenation exceptions out of 8191
+ 12i,0n,12p,144b,18s stack positions out of 5000i,500n,10000p,200000b,80000s
+No pages of output.

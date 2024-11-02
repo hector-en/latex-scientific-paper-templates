@@ -1,0 +1,100 @@
+\documentclass[11pt]{cls/labreport}
+%------------------------------------------------------------------------------------------------
+% Use the documentclass option 'lineno' to view line numbers
+%  COMMANDS:
+% \articletype{styles} ==>>  will load  "geos, gs, iba, inv, mp" style files
+% \inputfile{table,figures,...} in document ==> to load tables and figures from helper files ..
+% \fullref{tab:table1 or fig:figure1} etc   ==>  to reference tables, figures, etc
+% \cite(alt(p))[p.32]{Tewabe2021} ==>  (Jones et al., 1990, P32)
+% \table1{\textwidth}{Caption}              ==>  insert tables
+% \figure{0.34}{Caption}                    ==>  insert figures
+% \twocolstart                              ==>  switch to two column mode 
+% \twocolstop                               ==>  switch to one column mode 
+%-------------------------------------------------------------------------------------------------
+
+\usepackage{epstopdf}
+\usepackage{multicol}
+\usepackage[backend=biber,style=apa]{biblatex} % Use APA style
+\addbibresource{bib/s1b.bib}  % Add the correct bibliography file
+
+\setlength{\columnsep}{1.4em}
+\articletype{s1b} % article type
+% {inv} Investigation
+% {gs} Genomic Selection
+% {iba} Birkbeck, Infectious Bacteria and Antibiotics
+% {gos} Genetics of Sex
+% {mp} Multiparental Populations
+\runningtitle{LIFE70039 (S1b) - Coursework} % For use in the footer
+\runningauthor{CID \textit{02467892}}
+
+\title{\vspace*{2cm} BASIC DNA Assembly Practical: Evaluation of Parallel Biopart Assembly Standards.}
+
+\author[1]{Author: 02467892}
+%\author[1]{Author Two}
+%\author[2]{Author Three}
+%\author[2,3]{Author Four}
+%\author[4,$\ast$]{Author Five}
+
+\affil[1]{Mres Systems and Synthetic Biology$^{\ast}$}
+%\affil[2]{Author two affiliation}
+%\affil[3]{Author three affiliation}
+%\affil[4]{Author four affiliation}
+%\affil[$\dagger$]{These authors contributed equally to this work.}
+
+% Use the \equalcontrib command to mark authors with equal
+% contributions, using the relevant superscript numbers
+%\equalcontrib{1}
+%\equalcontrib{2}
+
+\correspondingauthoraffiliation[$\ast$]{Correspondence Address: Department of Life Sciences, Imperial College London, South Kensington Campus, London SW7 2AZ, UK. Email: \href{mailto:l.barron@imperial.ac.uk}{l.barron@imperial.ac.uk}}
+\keywords{BASIC DNA Assembly, Idempotent Cloning, Orthogonal Linker, DNA Cloning, Modular Assembly, Synthetic Biology Automation}
+
+%\begin{abstract}
+%    \abstract
+%\end{abstract}
+
+
+\dates{\rec{xx xx, xxxx} \acc{xx xx, xxxx}}
+
+
+\begin{document}
+
+% Use \inputfile{table,figures,...} in document to import tables and figures ..
+%\inputfile{abstract}
+\inputfile{introduction}
+\inputfile{results}
+\inputfile{definitions}
+%\inputfile{materials}
+%\inputfile{riskassesment}
+\maketitle
+\thispagestyle{firststyle}
+%\slugnote
+%\firstpagefootnote
+\vspace{-13pt}% Only used for adjusting extra space in the left column of the first page
+
+\begin{multicols}{2}
+\section{Introduction}
+    \introduction
+    
+\section{Results}
+    \results
+
+
+\section{Conclusion}
+%(\fullref{fig:figure2})
+% \cite{Casini2015}
+%\cite{Storch2015}
+%\cite{Storch2017}
+%\cite{Ellis2011}
+The high incauracy can be explained by several factors. misalignment of DNA Parts and linker lead to failed assembly. Another possible explanation the fact that the concentration of the 
+DNA fragments varied between the groups, which is plausable since there was no step to verify or check for that concentration. Therefore if the concentrations were indeed too low it would
+lead to insufficient ligation. This is likely what caused the high inacuracy since the variations between the groups also indicates a fluctuating accuracy. Another likely event could be contamination
+in the reaction mix leading to DNA ligase not digesting the BsaI site, this is however unlikely since most groups had a positive gel electrophoresis signal. Implementing multiple negative controls testing for diferent assebly steps would also optimise the accuracy.
+Comparing the results to the control, which had a control step for the DNA fragments purity \cite{Storch2015}, (Supplemental Material), we can conclude that considering the absense of
+essential control steps the BASIC assembly method is highly accurate and fast when looking at the control.
+
+% Create the bibliography
+\printbibliography
+
+\end{multicols}
+\end{document} 
