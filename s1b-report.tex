@@ -15,8 +15,41 @@
 \usepackage{epstopdf}
 \usepackage{multicol}
 \usepackage[backend=biber,style=apa]{biblatex} % Use APA style
-\addbibresource{bib/s1b.bib}  % Add the correct bibliography file
+% Package to change title formatting
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{tcolorbox}
+% Set up listings package for code formatting
+\usepackage{listings}
+ % Using the codebox environmen
+ \lstset{ 
+     language=Python,
+     basicstyle=\ttfamily\footnotesize,
+     keywordstyle=\color{blue},
+     commentstyle=\color{green!50!black},
+     stringstyle=\color{red},
+     showstringspaces=false,
+     breaklines=true,
+     numbers=left, % Add line numbers on the left
+     numberstyle=\tiny\color{gray}, % Style for line numbers
+     stepnumber=1, % Number each line
+     numbersep=5pt % Space between line numbers and code
+ }
 
+\usepackage{minted}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{multicol}
+\usepackage{pstricks}
+\usepackage{pst-node}
+\usepackage{pst-grad} % For gradients
+\usepackage{pst-plot} % For plotting
+\usepackage{multido}
+
+\addbibresource{bib/s1b.bib}  % Add the correct bibliography file
 \setlength{\columnsep}{1.4em}
 \articletype{s1b} % article type
 % {inv} Investigation
@@ -24,10 +57,10 @@
 % {iba} Birkbeck, Infectious Bacteria and Antibiotics
 % {gos} Genetics of Sex
 % {mp} Multiparental Populations
-\runningtitle{LIFE70039 (S1b) - Coursework} % For use in the footer
+\runningtitle{LIFE70038 (S1a) - Coursework} % For use in the footer
 \runningauthor{CID \textit{02467892}}
 
-\title{\vspace*{2cm} BASIC DNA Assembly Practical: Evaluation of Parallel Biopart Assembly Standards.}
+\title{\vspace*{2cm} Modelling of Biological Systems: Mathematical Analysis of Reaction Diffusion Systems.}
 
 \author[1]{Author: 02467892}
 %\author[1]{Author Two}
@@ -47,7 +80,7 @@
 %\equalcontrib{2}
 
 \correspondingauthoraffiliation[$\ast$]{Correspondence Address: Department of Life Sciences, Imperial College London, South Kensington Campus, London SW7 2AZ, UK. Email: \href{mailto:l.barron@imperial.ac.uk}{l.barron@imperial.ac.uk}}
-\keywords{BASIC DNA Assembly, Idempotent Cloning, Orthogonal Linker, DNA Cloning, Modular Assembly, Synthetic Biology Automation}
+\keywords{Intro to Mathematical Modelling, SSB2024-25, s1a-coursework, LIFE70038}
 
 %\begin{abstract}
 %    \abstract
@@ -58,11 +91,10 @@
 
 
 \begin{document}
-
 % Use \inputfile{table,figures,...} in document to import tables and figures ..
 %\inputfile{abstract}
-\inputfile{introduction}
-\inputfile{results}
+%\inputfile{introduction}
+%\inputfile{results}
 \inputfile{definitions}
 %\inputfile{materials}
 %\inputfile{riskassesment}
@@ -71,30 +103,162 @@
 %\slugnote
 %\firstpagefootnote
 \vspace{-13pt}% Only used for adjusting extra space in the left column of the first page
-
 \begin{multicols}{2}
-\section{Introduction}
-    \introduction
+% --------------------------------------------------------------------------------------------------------------------------
+\part*{Introduction}
+\lettrine[lines=2]{\color{color2}W}e are performing modelling of two biological systems related ODEs. the first one will look at a circular irriversible process \fullref{fig:1}, then at the Dual forward Circuit \fullref{fig:2}. and \fullref{fig:3}. After creating the mathematical modells \fullref{box:1}, \fullref{box:5}, we will examine the ODEs using a 
+Machine Learning Pipeline \fullref{fig:4}.
+
+\section{Irreversable Circular Reaction}
+The reaction is depicted in Figure 1, with species B katalysing its own production and therefore B$k_1$ beeing a second order kinetics. Part a will focus on modell building and part b on applying the Machine learning model, which is viewable on google codelab via
+\href{https://colab.research.google.com/drive/1Jj8BLVi6-IXPqv54bta5eGCVJjZAFVoR?usp=sharing}{s1a-coursework-supplemental.ipynb}
+{\footnotesize\imgtaskA{\textbf{Irreversable Circular Reaction Pathway.}Created with Tikz} 
+\newline
+\section{Dual Feedforward Circuit Analysis.}
+In task 2 we will first create the reaction circuit \fullref{fig:2}, \fullref{fig:3} and then the kinetics \fullref{box:5} and \fullref{box:4} before creating the ODEs in \fullref{box:6}, \fullref{box:7} and \fullref{box:8}. We will then conclude the task by looking at the reaction dynamics for high and low Signal.
+\twocolend
+{\noindent\footnotesize\circuit{0.4}{\footnotesize \textbf{Reaction Pathway. Dual Feedforward Circuit.} Created with PSTricks} 
+Figure created with Biorender.com with adoption from \cite{Storch2015} }}
+
+\twocolstart
+{\noindent\footnotesize\imgtaskB_tikz{\footnotesize \textbf{Dual Feedforward Circuit.} Created with PSTricks. }}
+
+\section{Machine Learning Implementation}
+ We have build a trianing pipele on https://colab.research.google.com/drive/1Jj8BLVi6-IXPqv54bta5eGCVJjZAFVoR?usp=sharing to examine the ODEs.
+\twocolend 
+{\footnotesize\resultfig{\textbf{Machine Learning Training Pipeline}. Created with PSTricks}
+
+\twocolstart
+
+% --------------------------------------------------------------------------------------------------------------------------
+
+\part*{Results.}
+\section{Task 1: Circular Pathway Analysis}
+The focus in this section is the analysis of the concentrations [A],[B],[C],[D] at equillibrium. We will 
+analyse the obtained solutions of that ODE and examine its physical behaviour through simulations and a machine learning model.
+We starting by understanding the mathematical model, which describs the stoichiometric system in \fullref{fig:1}. Its derivation is shown in \fullref{box:1} below.
+\twocolend
+\mathmodelA{Mathematical Model Cyclic Feedback Reaction}
+\twocolstart
+Now that we have our mathematical model, we can examine what happens at equilibrium conditions, when the net change in Species consuption vs. creation is 0: $\frac{d}{dt} = 0$. 
+\steadystate{Steadystate Analysis.}
+With the ODE in \fullref{box:2} we can solve the equation using Python.\\
+
+\begin{codebox}
+    \customlabel{code:\thecode}\\
+    \refstepcounter{code}\\ % Step
+    \textbf{Python solution for ODE (\fullref{box:1}):}  
+    \begin{lstlisting}
+    from sympy import symbols, Eq, solve
+    A, B, C, D, k1, k2, k3, k4 = symbols('A B C D k1 k2 k3 k4')
+
+    eq1 = Eq(-k1 * A + k4 * D, 0)
+    eq2 = Eq(k1 * A - k2 * B, 0)
+    eq3 = Eq(k2 * B - k3 * C, 0)
+    eq4 = Eq(k3 * C - k4 * D, 0)
+
+    solution = solve((eq1, eq2, eq3, eq4), (A, B, C, D))
     
-\section{Results}
-    \results
+    # Output:
+    [(A, 0, 0, 0), (k2/k1, D*k4/k2, D*k4/k3, D)]
+    print(solution)
+   \end{lstlisting}
+ \end{codebox}
+ \noindent\parbox[t]{0.48\textwidth}{\customlabel{code:\thecode}{{\footnotesize\textbf{ Snippet \thecode.} Solution for Equilibrium Concentrations using Python.}}}\\
+Looking at the output of the code above, we can summaries the result of the python code as described in \fullref{box:3} below.
+
+\steadysolution{The ODE in \fullref{box:2} has two solutions. \textbf{Solution 1} represents initial state, where only species A is present.
+\textbf{Solution 2} represents the steady state, with species A,B and C depending on D. Species D is independent and can be determined 
+by defining a total concentration amount: $X_0 = [A] + [B] + [C] + [D]$,  constraining all species.  }
+
+% This code output has two solutions:
+% 1. The trivial solution (A, 0, 0, 0) represents the initial state with no reactions.
+% 2. The non-trivial solution (k2/k1, D*k4/k2, D*k4/k3, D) shows the steady-state concentrations where D is the baseline. 
+% Use X0 (total concentration) to find D, ensuring that A, B, C, and D sum to X0. 
+% The steady-state ratios of A, B, and C depend on the rate constants.
+\section{Task 2: Dual Feedforward Circuit Analysis.}
+\twocolend
+The results for task two are below.
+\reactionprocess {\footnotesize\textbf{Stoichiometry of the Dual Feedforward Cuircuit.}}\\
+Now that we understand the reaction process involved in this Cuircuit, we can create the ODEs by looking at the individual Reactions.
+\dualfeedforward {\footnotesize\textbf{Mathematical Model of the Dual Feedforward Cuircuit.}}\\
+\twocolstart
+We can determine the Equilibrium states by setting the ODEs to zero and obtain the steady states.
+\steadystatedfc{\footnotesize\textbf{Steady States } for Dual Feedforward Cuircuit.}
+We can now solve the ODE using Python again:\\
+\twocolend
+\begin{codebox}
+    \customlabel{code:\thecode}\\
+    \refstepcounter{code}\\ % Step
+    \textbf{Python solution for ODE (\fullref{box:6}):}  
+    \begin{lstlisting}
+    from sympy import symbols, Eq, solve
+
+    # Define the symbols
+    A, I, R, A0, I0, R0, kfa, k_a, kfi, k_i, kf, kr, S = symbols('A I R A0 I0 R0 kfa k_a kfi k_i kf kr S')
+    
+    # Steady states of A,I,R
+    eq1 = Eq(kfa * S * A0 - k_a * A, 0)  
+    eq2 = Eq(kfi * S * I0 - k_i * I, 0) 
+    eq3 = Eq(kf * A * R0 - kr * I * R, 0) 
+    
+    # Solve for A, I, and R in terms of known parameters
+    solution = solve((eq1, eq2, eq3), (A, I, R))
+    
+    # Print the solution
+    print(solution)
+    
+    #Output
+    #[(A0*S*kfa/k_a, I0*S*kfi/k_i, A0*R0*k_i*kf*kfa/(I0*k_a*kfi*kr))] 
+   \end{lstlisting}
+ \end{codebox}
+ \noindent\parbox[t]{\textwidth}{\customlabel{code:\thecode}{{\footnotesize\textbf{ Snippet \thecode.} Solution for Equilibrium Concentrations using Python.}}}\\
+Looking at the output of the code above, we can summaries the result of the python code as described in \fullref{box:3} below.
+\twocolstart
+Looking at the Python output we find the following equillibria for the species:
+\steadysolutiondfc{\footnotesize\textbf{Steady States for Dual Feedforward Circuit.} \textbf{The steady-state for A} depends on the initial concentration of the inactive form of species A, 
+the signal, and the balance between activation ($k_{fa}$) and deactivation ($k_{-a}$) rates. \textbf{The steady-state for I} depends on the signal, the concentration of 
+the initial inactive species I, and the balance between activation ($k_{fi}$) and deactivation ($k_{-i}$) rates. \textbf{The steady-state of R} is a complex balance 
+between activating ($k_{f}, k_{fa}, k_{i}$) and deactivating ($k_{-a}, k_{fi}, k_{r}$) rates and initial species concentrations $\left(\frac{A_0}{I_0}\right)$. 
+This dual control is offset by the initial concentration of the inactive form of enzyme R.}\\[1em]
+Having the Steady-States, we can now perform the substitution and express R in terms the forward and reverse reactions.\\
 
 
-\section{Conclusion}
-%(\fullref{fig:figure2})
-% \cite{Casini2015}
-%\cite{Storch2015}
-%\cite{Storch2017}
-%\cite{Ellis2011}
+\begin{align}
+  &\text{Given equillibrium states:} \nonumber \\[5pt]
+  &A = \frac{A_0 S k_{fa}}{k_{-a}}, \quad I = \frac{I_0 S k_{fi}}{k_{-i}}, \\[10pt]
+  &\text{Rearrange to obtain } A_0 \text{ and } I_0: \nonumber  \\[5pt]
+  &A_0 = \frac{A k_{-a}}{S k_{fa}}, \quad I_0 = \frac{I k_{-i}}{S k_{fi}}. \\[10pt]
+  &\text{Substitute in } R: \nonumber  \\[5pt]
+  &R(S) = \frac{\left( \frac{A k_{-a}}{S k_{fa}} \right) R_0 k_{-i} k_{f} k_{fa}}{\left( \frac{I k_{-i}}{S k_{fi}} \right) k_{-a} k_{fi} k_{r}}. \\[10pt]  
+  &\text{Simplify} \nonumber \\[5pt]
+  &R(S) = \frac{A R_0 k_{f}}{I k_{r}}. \\[10pt]
+  &\text{denominator=} R_{forward} \text{, nominator=} R_{reverse} \nonumber \\[5pt]
+  &R_{\text{forward}}(S) = \frac{A R_0 k_{f} S}{I k_{r}}, \\[5pt]
+  &R_{\text{reverse}}(S) = \frac{A R_0 k_{f} k_{fa} S}{I k_{r} k_{-a} k_{fi}}.
+\end{align}
+The final steady states for R as a function of S are as follows:
+\steadysolutionrs{\footnotesize\textbf{R steady states.} Steady state conditions for R as expression of S. General (1), for the forward (2) and reverse (3) reactions.
+The forward reaction considers R activating species $(A, R_{0})$ and reaction rates $(k_{f} k_{fa})$. The reverse reaction considers R deactivating species $(I, R)$ and reaction rates $(k_{fi} k_{r})$ }
+\subsection{Irreversable Circular Reaction Pathway}
 The high incauracy can be explained by several factors. misalignment of DNA Parts and linker lead to failed assembly. Another possible explanation the fact that the concentration of the 
 DNA fragments varied between the groups, which is plausable since there was no step to verify or check for that concentration. Therefore if the concentrations were indeed too low it would
 lead to insufficient ligation. This is likely what caused the high inacuracy since the variations between the groups also indicates a fluctuating accuracy. Another likely event could be contamination
 in the reaction mix leading to DNA ligase not digesting the BsaI site, this is however unlikely since most groups had a positive gel electrophoresis signal. Implementing multiple negative controls testing for diferent assebly steps would also optimise the accuracy.
 Comparing the results to the control, which had a control step for the DNA fragments purity \cite{Storch2015}, (Supplemental Material), we can conclude that considering the absense of
 essential control steps the BASIC assembly method is highly accurate and fast when looking at the control.
-
+\subsection{Condition for Full Activation at High S and Low S}
+To fully active R under steady state conditions, where S is negligable ($S << R(S)$), the balance between activating species and favorable 
+reation rates must be ($R_0*A*k_f) > (I*K_r)$, so that $R_{forward}(S) > 1 $ and S must enable activation at very low treshholds.
+To fully active R under steady state conditions, where S is very high, the balance between activating and deactivating reaction rates $\frac{k_{f} k_{fa}}{k_{r} k_{-a} k_{fi}}$ will dominate the concentration of Active vs. Inactive species $\frac{A R_0 S}{I}$. What will inturn drive the activation rate of R. Therefore to achieve full activation at 
+equillibrium the activating rates are favorable only if $\frac{k_{f} k_{fa}}{k_{r} k_{-a} k_{fi}} > 1$.
+% --------------------------------------------------------------------------------------------------------------------------
+\part*{Literature}
 % Create the bibliography
-\printbibliography
+%\printbibliography
+
+No lterature was consulted, all code was taken from my github: \href{https://wwww.github.com/edunseng}{https://wwww.github.com/edunseng}
+Ml Model and simulations can be viewed from: https://colab.research.google.com/drive/1Jj8BLVi6-IXPqv54bta5eGCVJjZAFVoR?usp=sharing
 
 \end{multicols}
 \end{document} 

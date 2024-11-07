@@ -2791,18 +2791,9 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">bib/s1b.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">Ellis2011</bcf:citekey>
+    <bcf:citekey order="1">Storch2015</bcf:citekey>
     <bcf:citekey order="2">Storch2015</bcf:citekey>
-    <bcf:citekey order="3">Storch2017</bcf:citekey>
-    <bcf:citekey order="4">Storch2015</bcf:citekey>
-    <bcf:citekey order="5">Storch2015</bcf:citekey>
-    <bcf:citekey order="5">Storch2017</bcf:citekey>
-    <bcf:citekey order="6">Storch2015</bcf:citekey>
-    <bcf:citekey order="7">Storch2015</bcf:citekey>
-    <bcf:citekey order="8">Storch2015</bcf:citekey>
-    <bcf:citekey order="9">Ellis2011</bcf:citekey>
-    <bcf:citekey order="10">Storch2015</bcf:citekey>
-    <bcf:citekey order="11">Storch2017</bcf:citekey>
+    <bcf:citekey order="3">Storch2015</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="apa">
@@ -2845,13 +2836,4 @@
     </bcf:sort>
   </bcf:sortingtemplate>
   <!-- DATALISTS -->
-  <bcf:datalist section="0"
-                name="apa/global//global/global"
-                type="entry"
-                sortingtemplatename="apa"
-                sortingnamekeytemplatename="global"
-                labelprefix=""
-                uniquenametemplatename="global"
-                labelalphanametemplatename="global">
-  </bcf:datalist>
 </bcf:controlfile>

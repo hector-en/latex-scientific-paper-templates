@@ -19,130 +19,6 @@
 
 \refsection{0}
   \datalist[entry]{apa/global//global/global}
-    \entry{Ellis2011}{article}{}
-      \name{author}{3}{}{%
-        {{un=0,uniquepart=base,hash=395fd641bc482d575f3b52d2ef6aa187}{%
-           family={Ellis},
-           familyi={E\bibinitperiod},
-           given={Tom},
-           giveni={T\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=b81f317c56f57823895f9cd844c69041}{%
-           family={Adie},
-           familyi={A\bibinitperiod},
-           given={Tom},
-           giveni={T\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=12cd74eaf2232ff65456519c289efe71}{%
-           family={Baldwin},
-           familyi={B\bibinitperiod},
-           given={Geoff\bibnamedelima S.},
-           giveni={G\bibinitperiod\bibinitdelim S\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{publisher}{1}{%
-        {Integr Biol (Camb)}%
-      }
-      \strng{namehash}{2b0d471088bd6dc8e6acf11db8150531}
-      \strng{fullhash}{c25f072b4ec943753f31fdf8f83c591d}
-      \strng{bibnamehash}{c25f072b4ec943753f31fdf8f83c591d}
-      \strng{authorbibnamehash}{c25f072b4ec943753f31fdf8f83c591d}
-      \strng{authornamehash}{2b0d471088bd6dc8e6acf11db8150531}
-      \strng{authorfullhash}{c25f072b4ec943753f31fdf8f83c591d}
-      \field{sortinit}{E}
-      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{1757-9708}
-      \field{issue}{2}
-      \field{journaltitle}{Integrative biology : quantitative biosciences from nano to macro}
-      \field{title}{DNA assembly for synthetic biology: from parts to pathways and beyond}
-      \field{volume}{3}
-      \field{year}{2011}
-      \field{pages}{109\bibrangedash 118}
-      \range{pages}{10}
-      \verb{doi}
-      \verb 10.1039/C0IB00070A
-      \endverb
-      \verb{urlraw}
-      \verb https://pubmed.ncbi.nlm.nih.gov/21246151/
-      \endverb
-      \verb{url}
-      \verb https://pubmed.ncbi.nlm.nih.gov/21246151/
-      \endverb
-      \keyw{Artificial Cells / chemistry*,DNA / chemistry*,Genome*,Geoff S Baldwin,MEDLINE,Metabolic Networks and Pathways,NCBI,NIH,NLM,National Center for Biotechnology Information,National Institutes of Health,National Library of Medicine,Non-U.S. Gov't,PubMed Abstract,Research Support,Review,Synthetic Biology / methods*,Tom Adie,Tom Ellis,doi:10.1039/c0ib00070a,pmid:21246151}
-    \endentry
-    \entry{Storch2017}{article}{}
-      \name{author}{5}{}{%
-        {{un=0,uniquepart=base,hash=1fd79714fa4bcd461f0177b75f51cf23}{%
-           family={Storch},
-           familyi={S\bibinitperiod},
-           given={Marko},
-           giveni={M\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=234c3ec8a833046e5d48be61f1471cb2}{%
-           family={Casini},
-           familyi={C\bibinitperiod},
-           given={Arturo},
-           giveni={A\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=b76128ebb5e305702444c31ffda45f80}{%
-           family={Mackrow},
-           familyi={M\bibinitperiod},
-           given={Ben},
-           giveni={B\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=395fd641bc482d575f3b52d2ef6aa187}{%
-           family={Ellis},
-           familyi={E\bibinitperiod},
-           given={Tom},
-           giveni={T\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=12cd74eaf2232ff65456519c289efe71}{%
-           family={Baldwin},
-           familyi={B\bibinitperiod},
-           given={Geoff\bibnamedelima S.},
-           giveni={G\bibinitperiod\bibinitdelim S\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{publisher}{1}{%
-        {Methods Mol Biol}%
-      }
-      \strng{namehash}{2548b616ca56f278e9e4e375e0c1b9c4}
-      \strng{fullhash}{c5cd22dea336ae251a7b7aee77ddbd90}
-      \strng{bibnamehash}{c5cd22dea336ae251a7b7aee77ddbd90}
-      \strng{authorbibnamehash}{c5cd22dea336ae251a7b7aee77ddbd90}
-      \strng{authornamehash}{2548b616ca56f278e9e4e375e0c1b9c4}
-      \strng{authorfullhash}{c5cd22dea336ae251a7b7aee77ddbd90}
-      \field{extraname}{1}
-      \field{sortinit}{S}
-      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{1940-6029}
-      \field{journaltitle}{Methods in molecular biology (Clifton, N.J.)}
-      \field{title}{BASIC: A Simple and Accurate Modular DNA Assembly Method}
-      \field{volume}{1472}
-      \field{year}{2017}
-      \field{pages}{79\bibrangedash 91}
-      \range{pages}{13}
-      \verb{doi}
-      \verb 10.1007/978-1-4939-6343-0_6
-      \endverb
-      \verb{urlraw}
-      \verb https://pubmed.ncbi.nlm.nih.gov/27671933/
-      \endverb
-      \verb{url}
-      \verb https://pubmed.ncbi.nlm.nih.gov/27671933/
-      \endverb
-      \keyw{Arturo Casini,Bacterial,Base Sequence,Cloning,Escherichia coli / genetics,Geoff S Baldwin,MEDLINE,Marko Storch,Molecular*,NCBI,NIH,NLM,National Center for Biotechnology Information,National Institutes of Health,National Library of Medicine,Polymerase Chain Reaction,PubMed Abstract,Transformation,doi:10.1007/978-1-4939-6343-0_6,pmid:27671933}
-    \endentry
     \entry{Storch2015}{article}{}
       \name{author}{7}{}{%
         {{un=0,uniquepart=base,hash=1fd79714fa4bcd461f0177b75f51cf23}{%
@@ -197,7 +73,6 @@
       \strng{authorbibnamehash}{9930d5dd8f4c22172e6ac8e78542ff01}
       \strng{authornamehash}{2548b616ca56f278e9e4e375e0c1b9c4}
       \strng{authorfullhash}{9930d5dd8f4c22172e6ac8e78542ff01}
-      \field{extraname}{2}
       \field{sortinit}{S}
       \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
       \field{extradatescope}{labelyear}
