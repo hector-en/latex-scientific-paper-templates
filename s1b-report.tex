@@ -1,264 +1,496 @@
-\documentclass[11pt]{cls/labreport}
-%------------------------------------------------------------------------------------------------
-% Use the documentclass option 'lineno' to view line numbers
-%  COMMANDS:
-% \articletype{styles} ==>>  will load  "geos, gs, iba, inv, mp" style files
-% \inputfile{table,figures,...} in document ==> to load tables and figures from helper files ..
-% \fullref{tab:table1 or fig:figure1} etc   ==>  to reference tables, figures, etc
-% \cite(alt(p))[p.32]{Tewabe2021} ==>  (Jones et al., 1990, P32)
-% \table1{\textwidth}{Caption}              ==>  insert tables
-% \figure{0.34}{Caption}                    ==>  insert figures
-% \twocolstart                              ==>  switch to two column mode 
-% \twocolstop                               ==>  switch to one column mode 
-%-------------------------------------------------------------------------------------------------
-
-\usepackage{epstopdf}
-\usepackage{multicol}
-\usepackage[backend=biber,style=apa]{biblatex} % Use APA style
-% Package to change title formatting
-\usepackage{titlesec}
-\usepackage{xcolor}
-\usepackage{tikz}
-\usepackage{tcolorbox}
-% Set up listings package for code formatting
-\usepackage{listings}
- % Using the codebox environmen
- \lstset{ 
-     language=Python,
-     basicstyle=\ttfamily\footnotesize,
-     keywordstyle=\color{blue},
-     commentstyle=\color{green!50!black},
-     stringstyle=\color{red},
-     showstringspaces=false,
-     breaklines=true,
-     numbers=left, % Add line numbers on the left
-     numberstyle=\tiny\color{gray}, % Style for line numbers
-     stepnumber=1, % Number each line
-     numbersep=5pt % Space between line numbers and code
- }
-
-\usepackage{minted}
+\documentclass{beamer} % my version
+\documentclass[handout]{beamer} % for audience
+\usepackage{graphicx}
 \usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{mathrsfs}
-\usepackage{multicol}
-\usepackage{pstricks}
-\usepackage{pst-node}
-\usepackage{pst-grad} % For gradients
-\usepackage{pst-plot} % For plotting
-\usepackage{multido}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, shapes.geometric}
+% Center titles in beamer
+\setbeamertemplate{frametitle}{\centering\insertframetitle}
+% Title font customization for a bold look
+\setbeamerfont{title}{size=\Large, series=\bfseries}
+% Define custom environments
+\newenvironment{mathmodel}{
+    \begin{tcolorbox}[colback=violet!5, colframe=white, sharp corners, boxrule=0pt, title=Mathematical Model]
+}{
+    \end{tcolorbox}
+}
 
-\addbibresource{bib/s1b.bib}  % Add the correct bibliography file
-\setlength{\columnsep}{1.4em}
-\articletype{s1b} % article type
-% {inv} Investigation
-% {gs} Genomic Selection
-% {iba} Birkbeck, Infectious Bacteria and Antibiotics
-% {gos} Genetics of Sex
-% {mp} Multiparental Populations
-\runningtitle{LIFE70038 (S1a) - Coursework} % For use in the footer
-\runningauthor{CID \textit{02467892}}
+\newenvironment{mathmod}{
+    \begin{tcolorbox}[colback=blue!5, colframe=white, sharp corners, boxrule=0pt, title=Mathematical Model]
+}{
+    \end{tcolorbox}
+}
 
-\title{\vspace*{2cm} Modelling of Biological Systems: Mathematical Analysis of Reaction Diffusion Systems.}
+\newenvironment{codebox}{
+    \begin{tcolorbox}[colback=gray!10, colframe=black, sharp corners, boxrule=0.5pt, title=Code Box]
+}{
+    \end{tcolorbox}
+}
 
-\author[1]{Author: 02467892}
-%\author[1]{Author Two}
-%\author[2]{Author Three}
-%\author[2,3]{Author Four}
-%\author[4,$\ast$]{Author Five}
+% Define resized figures with smaller captions
 
-\affil[1]{Mres Systems and Synthetic Biology$^{\ast}$}
-%\affil[2]{Author two affiliation}
-%\affil[3]{Author three affiliation}
-%\affil[4]{Author four affiliation}
-%\affil[$\dagger$]{These authors contributed equally to this work.}
+\def\imgRepairChallenge#1{
+    \refstepcounter{figure} % Increment figure counter
+    \begin{center}
+    \resizebox{\textwidth}{!}{ % Resize the entire figure to fit the frame width
+    \begin{tikzpicture}[
+        node distance=1.5cm, 
+        process/.style={rectangle, draw, fill=orange!20, rounded corners, minimum height=2em, minimum width=3cm, text centered},
+        repairpath/.style={rectangle, draw, fill=blue!10, rounded corners, minimum height=2em, minimum width=2.5cm, text centered},
+        outcome/.style={rectangle, draw, fill=red!10, rounded corners, minimum height=2em, minimum width=2.5cm, text centered},
+        hpath/.style={rectangle, draw, fill=green!10, rounded corners, minimum height=2em, minimum width=2.5cm, text centered},
+        arrow/.style={thick, ->, >=Stealth}
+    ]
 
-% Use the \equalcontrib command to mark authors with equal
-% contributions, using the relevant superscript numbers
-%\equalcontrib{1}
-%\equalcontrib{2}
+    % Title Node
+    \node[align=center, font=\large\bfseries, text width=8cm] at (0,2) {CRISPR/Cas9 DNA Repair Challenges};
 
-\correspondingauthoraffiliation[$\ast$]{Correspondence Address: Department of Life Sciences, Imperial College London, South Kensington Campus, London SW7 2AZ, UK. Email: \href{mailto:l.barron@imperial.ac.uk}{l.barron@imperial.ac.uk}}
-\keywords{Intro to Mathematical Modelling, SSB2024-25, s1a-coursework, LIFE70038}
+    % Main Process Node - CRISPR Cut
+    \node[process] (dsb) at (0,0) {CRISPR/Cas9 introduces a DSB};
+    
+    % Repair Pathways
+    \node[repairpath, below left=0.8cm and 1.5cm of dsb] (nhej) {NHEJ Repair Pathway};
+    \node[repairpath, below right=0.8cm and 1.5cm of dsb] (mmej) {MMEJ Repair Pathway};
+    \node[hpath, below=0.8cm of dsb] (hdr) {HDR Repair Pathway};
 
-%\begin{abstract}
-%    \abstract
-%\end{abstract}
+    % Repair Outcomes
+    \node[outcome, below=1.2cm of nhej] (nhej_outcome) {Random Indels (Insertions/Deletions)};
+    \node[outcome, below=1.2cm of mmej] (mmej_outcome) {Predictable Small Deletions};
+    \node[outcome, below=1.2cm of hdr] (hdr_outcome) {Template-Based Repair (Precise)};
+
+    % Connections from DSB
+    \draw[arrow] (dsb) -- node[above left] {Pathway 1} (nhej);
+    \draw[arrow] (dsb) -- node[above right] {Pathway 2} (mmej);
+    \draw[arrow] (dsb) -- node[right] {Pathway 3} (hdr);
+
+    % Connections to Repair Outcomes
+    \draw[arrow] (nhej) -- (nhej_outcome);
+    \draw[arrow] (mmej) -- (mmej_outcome);
+    \draw[arrow] (hdr) -- (hdr_outcome);
+
+    % Additional Labels and Explanations
+    \node[below=0.4cm of nhej_outcome, align=center, text width=3.5cm] {NHEJ is quick but\\ unpredictable};
+    \node[below=0.4cm of mmej_outcome, align=center, text width=3.5cm] {MMEJ is predictable\\ but sequence-dependent};
+    \node[below=0.4cm of hdr_outcome, align=center, text width=3.5cm] {HDR is precise but\\ requires a template};
+
+    % Summary Explanation at Bottom
+    \node[align=left,text width=18cm, below=6.5cm of dsb] {The challenge of CRISPR repair is that repair pathways like NHEJ and MMEJ can lead to unpredictable or variable outcomes, which complicates precise genome editing.};
+    
+    \node[align=right,text width=18cm, below=9cm of dsb] {\small Graph created with #1.};
 
 
-\dates{\rec{xx xx, xxxx} \acc{xx xx, xxxx}}
+    \end{tikzpicture}
+    } % End of \resizebox
+    \end{center}
+    }
 
+\def\imgInDelphiRelation#1{
+    \refstepcounter{figure} % Increment figure counter
+    \begin{center}
+    \resizebox{\textwidth}{!}{
+    \begin{tikzpicture}[
+        node distance=2.5cm,
+        process/.style={rectangle, draw, fill=blue!20, rounded corners, text centered, minimum height=2em, minimum width=3cm},
+        arrow/.style={thick, ->, >=Stealth}
+    ]
+    \node[process] (indelphi) {InDelphi Model};
+    \node[process, right=of indelphi] (pythia) {Pythia Design Tool};
+    \node[process, right=of pythia] (template) {Optimized Repair Template};
+
+    \draw[arrow] (indelphi) -- node[anchor=south] {Predictions} (pythia);
+    \draw[arrow] (pythia) -- node[anchor=south] {Repair Design} (template);
+    \end{tikzpicture}
+    }
+    \end{center}
+    \noindent\parbox[t]{0.48\textwidth}{\raggedright\small \textbf{Figure \thefigure}: #1}\\[1em]
+}
+
+\def\imgInDelphiLearning#1{
+    \refstepcounter{figure} % Increment figure counter
+    \begin{center}
+    \resizebox{\textwidth}{!}{
+    \begin{tikzpicture}[
+        node distance=2.5cm,
+        process/.style={rectangle, draw, fill=green!20, rounded corners, text centered, minimum height=2em, minimum width=3cm},
+        arrow/.style={thick, ->, >=Stealth}
+    ]
+    \node[process] (input) {Training Data: Sequence Contexts + Outcomes};
+    \node[process, right=of input] (model) {InDelphi Learning Model};
+    \node[process, right=of model] (output) {Predicted Repair Outcomes};
+
+    \draw[arrow] (input) -- (model);
+    \draw[arrow] (model) -- (output);
+    \end{tikzpicture}
+    }
+    \end{center}
+    \noindent\parbox[t]{0.48\textwidth}{\small \textbf{Figure \thefigure}: #1}\\[1em]
+}
+
+\def\imgMMEJDiagram#1{
+    \refstepcounter{figure} % Increment figure counter
+    \begin{center}
+    \begin{tikzpicture}[scale=0.8, transform shape]
+        % DNA strand before the cut
+        \draw[thick] (-4,0) -- (0,0); 
+        
+        % DSB site marked in red
+        \fill[red] (-2, 0) circle (1.5pt); % Highlight DSB with a red dot
+        \node[above] at (-2,0.2) {\textbf{\textcolor{red}{DSB}}};
+
+        % Microhomology sequences marked in blue
+        \draw[thick, dashed, blue] (-4, -0.8) -- (-1.5, -0.8); % Left microhomology
+        \draw[thick, dashed, blue] (-1.5, -0.8) -- (0, -0.8); % Right microhomology
+        \node[below] at (-3.75, -1.0) {\textbf{\textcolor{blue}{$\mu$Hs}}};
+        \node[below] at (-0.25, -1.0) {\textbf{\textcolor{blue}{$\mu$Hs}}};
+
+        % Deleted region marked in orange
+        \draw[thick, orange] (-1.5, -0.8) -- (-2.5, -0.8); 
+        \node[below] at (-2, -1.2) {\textbf{\textcolor{orange}{dels ($\Delta$)}}};
+
+        % Title and explanation at the top and bottom
+        \node[above=0.2cm of 2, align=center, font=\large\bfseries] {};
+        \node[align=left, text width=12cm, below=3.5cm of 2] {\small Microhomologies (in blue) guide alignment at DSBs (in red), leading to predictable deletions (in orange) for more controlled editing.};
+        \node[align=right, text width=10cm, below=6.5cm of 2] {\Small Graph created with Tikz.};
+
+    \end{tikzpicture}
+    \end{center}}
+
+\def\imgPythiaTemplate#1{
+    \refstepcounter{figure} % Increment figure counter
+    \begin{center}
+    \resizebox{\textwidth}{!}{
+    \begin{tikzpicture}[
+        node distance=2cm,
+        process/.style={rectangle, draw, fill=orange!20, rounded corners, text centered, minimum height=2em, minimum width=3cm},
+        arrow/.style={thick, ->, >=Stealth}
+    ]
+    \node[process] (indelphi) {InDelphi Predictions};
+    \node[process, right=of indelphi] (pythia) {Pythia Tool};
+    \node[process, right=of pythia] (template) {Repair Template with Trimology};
+
+    \draw[arrow] (indelphi) -- (pythia);
+    \draw[arrow] (pythia) -- (template);
+    \end{tikzpicture}
+    }
+    \end{center}
+    \noindent\parbox[t]{0.48\textwidth}{\small \textbf{Figure \thefigure}: #1}\\[1em]
+}
+
+\title{InDelphi and Pythia in Genome Editing}
+\author{Presented by: Hector Edu Nseng}
+\date{\today}
 
 \begin{document}
-% Use \inputfile{table,figures,...} in document to import tables and figures ..
-%\inputfile{abstract}
-%\inputfile{introduction}
-%\inputfile{results}
-\inputfile{definitions}
-%\inputfile{materials}
-%\inputfile{riskassesment}
-\maketitle
-\thispagestyle{firststyle}
-%\slugnote
-%\firstpagefootnote
-\vspace{-13pt}% Only used for adjusting extra space in the left column of the first page
-\begin{multicols}{2}
-% --------------------------------------------------------------------------------------------------------------------------
-\part*{Introduction}
-\lettrine[lines=2]{\color{color2}W}e are performing modelling of two biological systems related ODEs. the first one will look at a circular irriversible process \fullref{fig:1}, then at the Dual forward Circuit \fullref{fig:2}. and \fullref{fig:3}. After creating the mathematical modells \fullref{box:1}, \fullref{box:5}, we will examine the ODEs using a 
-Machine Learning Pipeline \fullref{fig:4}.
 
-\section{Irreversable Circular Reaction}
-The reaction is depicted in Figure 1, with species B katalysing its own production and therefore B$k_1$ beeing a second order kinetics. Part a will focus on modell building and part b on applying the Machine learning model, which is viewable on google codelab via
-\href{https://colab.research.google.com/drive/1Jj8BLVi6-IXPqv54bta5eGCVJjZAFVoR?usp=sharing}{s1a-coursework-supplemental.ipynb}
-{\footnotesize\imgtaskA{\textbf{Irreversable Circular Reaction Pathway.}Created with Tikz} 
-\newline
-\section{Dual Feedforward Circuit Analysis.}
-In task 2 we will first create the reaction circuit \fullref{fig:2}, \fullref{fig:3} and then the kinetics \fullref{box:5} and \fullref{box:4} before creating the ODEs in \fullref{box:6}, \fullref{box:7} and \fullref{box:8}. We will then conclude the task by looking at the reaction dynamics for high and low Signal.
-\twocolend
-{\noindent\footnotesize\circuit{0.4}{\footnotesize \textbf{Reaction Pathway. Dual Feedforward Circuit.} Created with PSTricks} 
-Figure created with Biorender.com with adoption from \cite{Storch2015} }}
+% Title Slide
+\title{InDelphi and Pythia in Genome Editing}
+\author{Presented by: [Your Name]}
+\date{\today}
 
-\twocolstart
-{\noindent\footnotesize\imgtaskB_tikz{\footnotesize \textbf{Dual Feedforward Circuit.} Created with PSTricks. }}
+\begin{document}
 
-\section{Machine Learning Implementation}
- We have build a trianing pipele on https://colab.research.google.com/drive/1Jj8BLVi6-IXPqv54bta5eGCVJjZAFVoR?usp=sharing to examine the ODEs.
-\twocolend 
-{\footnotesize\resultfig{\textbf{Machine Learning Training Pipeline}. Created with PSTricks}
+% Title Slide
+\begin{frame}
+    \titlepage
+\end{frame}
 
-\twocolstart
+\begin{frame}{Introduction to CRISPR Repair Challenges}
+  \only<beamer>{
+  \begin{itemize}
+      \item CRISPR/Cas9 creates double-strand breaks (DSBs) in DNA.
+      \item Repair pathways  Non-Homologous End Joining (NHEJ), Microhomology-Mediated End Joining (MMEJ), Homology-Directed Repair (HDR) lead to varied outcomes, often unpredictable.
+      \item Predictable repair is essential for precise gene editing applications.
+  \end{itemize}
+  \note{
+      In this slide, introduce the concept of CRISPR creating DSBs. Mention that these breaks can be repaired through different pathways like NHEJ and MMEJ, leading to variable outcomes. This is a foundational challenge that *InDelphi* and *Pythia* aim to address.
+    }
+  }
+  \only<handout>{
+    {\imgRepairChallenge{PSTricks}}
+    }
+\end{frame}
 
-% --------------------------------------------------------------------------------------------------------------------------
+% Slide 4: Microhomology-Mediated End Joining (MMEJ)
+\begin{frame}{Microhomology-Mediated End Joining (MMEJ) (*explain*)}
+  \only<handout>{
+  \imgMMEJDiagram{}
+  }
+  % Updated Bullet Points with Emphasis on Color Coding
+  \only<beamer>{
+  \begin{itemize}
+      \item MMEJ aligns DNA ends at a double-strand break (DSB) using short matching sequences called *microhomologies*.
+      \item This alignment leads to the removal of non-matching sequences between microhomologies (orange), creating a small deletion in the repaired DNA.
+  \end{itemize}
+  }
 
-\part*{Results.}
-\section{Task 1: Circular Pathway Analysis}
-The focus in this section is the analysis of the concentrations [A],[B],[C],[D] at equillibrium. We will 
-analyse the obtained solutions of that ODE and examine its physical behaviour through simulations and a machine learning model.
-We starting by understanding the mathematical model, which describs the stoichiometric system in \fullref{fig:1}. Its derivation is shown in \fullref{box:1} below.
-\twocolend
-\mathmodelA{Mathematical Model Cyclic Feedback Reaction}
-\twocolstart
-Now that we have our mathematical model, we can examine what happens at equilibrium conditions, when the net change in Species consuption vs. creation is 0: $\frac{d}{dt} = 0$. 
-\steadystate{Steadystate Analysis.}
-With the ODE in \fullref{box:2} we can solve the equation using Python.\\
-
-\begin{codebox}
-    \customlabel{code:\thecode}\\
-    \refstepcounter{code}\\ % Step
-    \textbf{Python solution for ODE (\fullref{box:1}):}  
-    \begin{lstlisting}
-    from sympy import symbols, Eq, solve
-    A, B, C, D, k1, k2, k3, k4 = symbols('A B C D k1 k2 k3 k4')
-
-    eq1 = Eq(-k1 * A + k4 * D, 0)
-    eq2 = Eq(k1 * A - k2 * B, 0)
-    eq3 = Eq(k2 * B - k3 * C, 0)
-    eq4 = Eq(k3 * C - k4 * D, 0)
-
-    solution = solve((eq1, eq2, eq3, eq4), (A, B, C, D))
-    
-    # Output:
-    [(A, 0, 0, 0), (k2/k1, D*k4/k2, D*k4/k3, D)]
-    print(solution)
-   \end{lstlisting}
- \end{codebox}
- \noindent\parbox[t]{0.48\textwidth}{\customlabel{code:\thecode}{{\footnotesize\textbf{ Snippet \thecode.} Solution for Equilibrium Concentrations using Python.}}}\\
-Looking at the output of the code above, we can summaries the result of the python code as described in \fullref{box:3} below.
-
-\steadysolution{The ODE in \fullref{box:2} has two solutions. \textbf{Solution 1} represents initial state, where only species A is present.
-\textbf{Solution 2} represents the steady state, with species A,B and C depending on D. Species D is independent and can be determined 
-by defining a total concentration amount: $X_0 = [A] + [B] + [C] + [D]$,  constraining all species.  }
-
-% This code output has two solutions:
-% 1. The trivial solution (A, 0, 0, 0) represents the initial state with no reactions.
-% 2. The non-trivial solution (k2/k1, D*k4/k2, D*k4/k3, D) shows the steady-state concentrations where D is the baseline. 
-% Use X0 (total concentration) to find D, ensuring that A, B, C, and D sum to X0. 
-% The steady-state ratios of A, B, and C depend on the rate constants.
-\section{Task 2: Dual Feedforward Circuit Analysis.}
-\twocolend
-The results for task two are below.
-\reactionprocess {\footnotesize\textbf{Stoichiometry of the Dual Feedforward Cuircuit.}}\\
-Now that we understand the reaction process involved in this Cuircuit, we can create the ODEs by looking at the individual Reactions.
-\dualfeedforward {\footnotesize\textbf{Mathematical Model of the Dual Feedforward Cuircuit.}}\\
-\twocolstart
-We can determine the Equilibrium states by setting the ODEs to zero and obtain the steady states.
-\steadystatedfc{\footnotesize\textbf{Steady States } for Dual Feedforward Cuircuit.}
-We can now solve the ODE using Python again:\\
-\twocolend
-\begin{codebox}
-    \customlabel{code:\thecode}\\
-    \refstepcounter{code}\\ % Step
-    \textbf{Python solution for ODE (\fullref{box:6}):}  
-    \begin{lstlisting}
-    from sympy import symbols, Eq, solve
-
-    # Define the symbols
-    A, I, R, A0, I0, R0, kfa, k_a, kfi, k_i, kf, kr, S = symbols('A I R A0 I0 R0 kfa k_a kfi k_i kf kr S')
-    
-    # Steady states of A,I,R
-    eq1 = Eq(kfa * S * A0 - k_a * A, 0)  
-    eq2 = Eq(kfi * S * I0 - k_i * I, 0) 
-    eq3 = Eq(kf * A * R0 - kr * I * R, 0) 
-    
-    # Solve for A, I, and R in terms of known parameters
-    solution = solve((eq1, eq2, eq3), (A, I, R))
-    
-    # Print the solution
-    print(solution)
-    
-    #Output
-    #[(A0*S*kfa/k_a, I0*S*kfi/k_i, A0*R0*k_i*kf*kfa/(I0*k_a*kfi*kr))] 
-   \end{lstlisting}
- \end{codebox}
- \noindent\parbox[t]{\textwidth}{\customlabel{code:\thecode}{{\footnotesize\textbf{ Snippet \thecode.} Solution for Equilibrium Concentrations using Python.}}}\\
-Looking at the output of the code above, we can summaries the result of the python code as described in \fullref{box:3} below.
-\twocolstart
-Looking at the Python output we find the following equillibria for the species:
-\steadysolutiondfc{\footnotesize\textbf{Steady States for Dual Feedforward Circuit.} \textbf{The steady-state for A} depends on the initial concentration of the inactive form of species A, 
-the signal, and the balance between activation ($k_{fa}$) and deactivation ($k_{-a}$) rates. \textbf{The steady-state for I} depends on the signal, the concentration of 
-the initial inactive species I, and the balance between activation ($k_{fi}$) and deactivation ($k_{-i}$) rates. \textbf{The steady-state of R} is a complex balance 
-between activating ($k_{f}, k_{fa}, k_{i}$) and deactivating ($k_{-a}, k_{fi}, k_{r}$) rates and initial species concentrations $\left(\frac{A_0}{I_0}\right)$. 
-This dual control is offset by the initial concentration of the inactive form of enzyme R.}\\[1em]
-Having the Steady-States, we can now perform the substitution and express R in terms the forward and reverse reactions.\\
+\end{frame}
 
 
-\begin{align}
-  &\text{Given equillibrium states:} \nonumber \\[5pt]
-  &A = \frac{A_0 S k_{fa}}{k_{-a}}, \quad I = \frac{I_0 S k_{fi}}{k_{-i}}, \\[10pt]
-  &\text{Rearrange to obtain } A_0 \text{ and } I_0: \nonumber  \\[5pt]
-  &A_0 = \frac{A k_{-a}}{S k_{fa}}, \quad I_0 = \frac{I k_{-i}}{S k_{fi}}. \\[10pt]
-  &\text{Substitute in } R: \nonumber  \\[5pt]
-  &R(S) = \frac{\left( \frac{A k_{-a}}{S k_{fa}} \right) R_0 k_{-i} k_{f} k_{fa}}{\left( \frac{I k_{-i}}{S k_{fi}} \right) k_{-a} k_{fi} k_{r}}. \\[10pt]  
-  &\text{Simplify} \nonumber \\[5pt]
-  &R(S) = \frac{A R_0 k_{f}}{I k_{r}}. \\[10pt]
-  &\text{denominator=} R_{forward} \text{, nominator=} R_{reverse} \nonumber \\[5pt]
-  &R_{\text{forward}}(S) = \frac{A R_0 k_{f} S}{I k_{r}}, \\[5pt]
-  &R_{\text{reverse}}(S) = \frac{A R_0 k_{f} k_{fa} S}{I k_{r} k_{-a} k_{fi}}.
-\end{align}
-The final steady states for R as a function of S are as follows:
-\steadysolutionrs{\footnotesize\textbf{R steady states.} Steady state conditions for R as expression of S. General (1), for the forward (2) and reverse (3) reactions.
-The forward reaction considers R activating species $(A, R_{0})$ and reaction rates $(k_{f} k_{fa})$. The reverse reaction considers R deactivating species $(I, R)$ and reaction rates $(k_{fi} k_{r})$ }
-\subsection{Irreversable Circular Reaction Pathway}
-The high incauracy can be explained by several factors. misalignment of DNA Parts and linker lead to failed assembly. Another possible explanation the fact that the concentration of the 
-DNA fragments varied between the groups, which is plausable since there was no step to verify or check for that concentration. Therefore if the concentrations were indeed too low it would
-lead to insufficient ligation. This is likely what caused the high inacuracy since the variations between the groups also indicates a fluctuating accuracy. Another likely event could be contamination
-in the reaction mix leading to DNA ligase not digesting the BsaI site, this is however unlikely since most groups had a positive gel electrophoresis signal. Implementing multiple negative controls testing for diferent assebly steps would also optimise the accuracy.
-Comparing the results to the control, which had a control step for the DNA fragments purity \cite{Storch2015}, (Supplemental Material), we can conclude that considering the absense of
-essential control steps the BASIC assembly method is highly accurate and fast when looking at the control.
-\subsection{Condition for Full Activation at High S and Low S}
-To fully active R under steady state conditions, where S is negligable ($S << R(S)$), the balance between activating species and favorable 
-reation rates must be ($R_0*A*k_f) > (I*K_r)$, so that $R_{forward}(S) > 1 $ and S must enable activation at very low treshholds.
-To fully active R under steady state conditions, where S is very high, the balance between activating and deactivating reaction rates $\frac{k_{f} k_{fa}}{k_{r} k_{-a} k_{fi}}$ will dominate the concentration of Active vs. Inactive species $\frac{A R_0 S}{I}$. What will inturn drive the activation rate of R. Therefore to achieve full activation at 
-equillibrium the activating rates are favorable only if $\frac{k_{f} k_{fa}}{k_{r} k_{-a} k_{fi}} > 1$.
-% --------------------------------------------------------------------------------------------------------------------------
-\part*{Literature}
-% Create the bibliography
-%\printbibliography
 
-No lterature was consulted, all code was taken from my github: \href{https://wwww.github.com/edunseng}{https://wwww.github.com/edunseng}
-Ml Model and simulations can be viewed from: https://colab.research.google.com/drive/1Jj8BLVi6-IXPqv54bta5eGCVJjZAFVoR?usp=sharing
+% Slide 1: Introduction to CRISPR Challenges (Presenter-Only Text)
 
-\end{multicols}
-\end{document} 
+\begin{frame}{Introduction to InDelphi’s Prediction Model (*explain*)}
+  
+  % Presenter Version: Bullet points only, no images
+  \only<beamer>{
+      \begin{itemize}
+          \item *InDelphi* predicts gene editing outcomes by analyzing DNA sequence contexts around breaks. Here Cas9 introduces DSB...
+          \item Microhomology sequences play a significant role in guiding deletion patterns. (panel a,b)
+          \item Different DNA sequences lead to varied deletion profiles, showing the flexibility of *InDelphi*. (panel c)
+      \end{itemize}
+  }
+
+  % Audience Version: Images only, no bullet points
+  \only<handout>{
+      \begin{figure}
+        \raggedleft
+          \includegraphics[width=1.1\textwidth]{fig/present/fig1_combined.jpeg}
+          {\small \caption{\textit{InDelphi} model: predicted editing outcomes (a), role of microhomology in deletions (b), context-dependent deletion profiles (c).}}
+        \end{figure}
+  }
+
+  % Presenter Notes
+  \note{
+      This slide introduces *InDelphi*'s predictive model. Discuss how it analyzes the DNA sequence around double-strand breaks to predict outcomes. 
+      Emphasize the role of microhomology in influencing deletions, and explain how different DNA contexts lead to varied editing patterns, highlighting the model's adaptability.
+  }
+\end{frame}
+
+
+\begin{frame}{Experimental Setup and Junction Analysis (*explain*)}
+  % Presenter Version: Bullet points for explanation
+  \only<beamer>{
+      \begin{itemize}
+          \item **Panel a**: Shows the design of the CRISPR/Cas9 strategy for inserting an eGFP gene using repair templates.
+          \item **5' and 3' Junctions** (Panel g): 
+            - Demonstrates real outcomes at both junctions, confirming deletions depend on microhomology (mH) usage.
+          \item Each scaffold (1, 2, and 3) represents different configurations and the resulting sequence after repair.
+      \end{itemize}
+      \note{
+          This slide highlights *Pythia*’s use of microhomology at integration junctions. Explain how CRISPR/Cas9 was used to deliver the eGFP gene, with the 5' and 3' junctions showing alignment using microhomology. Discuss how the presence of small deletions is consistent with MMEJ-based repair.
+      }
+  }
+
+  % Audience Version: Image only
+  \only<handout>{
+      \begin{figure}
+        \raggedright
+          \includegraphics[width=\textwidth]{fig/present/fig3_1.jpeg}
+          \caption{\small Experimental setup (a) and sequence analysis of 5' and 3' junctions (g), showing scaffold alignment and deletion patterns due to microhomology use.}
+      \end{figure}
+  }
+\end{frame}
+
+\begin{frame}{eGFP Expression in Xenopus Embryos}
+  % Presenter Version: Bullet points for explanation
+  \only<beamer>{
+      \begin{itemize}
+          \item **Figure b** Visualizes eGFP expression in various stages (neural, tadpole, forelimb).
+          \item eGFP expression indicates successful integration of the repair template.
+          \item Different levels and patterns of expression across developmental stages confirm successful integration into the genome.
+      \end{itemize}
+      \note{
+          Describe how the eGFP marker helps visualize successful integration of the repair template. Explain that different stages (neural, tadpole, forelimb) provide insight into temporal and spatial expression, confirming that the editing process worked as intended.
+      }
+  }
+
+  % Audience Version: Image only
+  \only<handout>{
+      \begin{figure}
+          \centering
+          \includegraphics[width=\textwidth]{fig/present/fig3_2.jpeg}
+          \caption{\small Expression of eGFP in \textit{Xenopus} at various developmental stages, demonstrating successful integration.}
+      \end{figure}
+  }
+\end{frame}
+\begin{frame}{eGFP and dsRed2 Expression Validation in F2 Generation}
+  % Presenter Version: Bullet points for explanation
+  \only<beamer>{
+      \begin{itemize}
+          \item **Panel j** Shows eGFP expression in F2 tadpole kidney, confirming inheritance of the transgene.
+          \item **Panel k-l** Visualizes dsRed2 expression in muscle tissue of F2 homozygote, showing stable integration and expression in F2 offspring.
+          \item This confirms that the genome edits are heritable, supporting *Pythia*’s efficacy in generating inheritable modifications.
+      \end{itemize}
+      \note{
+          Explain the significance of eGFP and dsRed2 expression in the F2 generation, indicating successful germline transmission. Emphasize that these results validate *Pythia*’s predictions not only for targeted tissue expression but also for inheritable genomic modifications, which is essential for applications requiring stable gene integration across generations.
+      }
+  }
+
+  % Audience Version: Image only
+  \only<handout>{
+      \begin{figure}
+          \centering
+          \hspace{-3em} % Shift the image slightly to the left
+          \includegraphics[width=\textwidth]{fig/present/fig3_3.jpeg}
+          \caption{\small eGFP and dsRed2 expression in F2 generation, validating inheritable integration across tissues and developmental stages in \textit{Xenopus} embryos.}
+      \end{figure}
+  }
+\end{frame}
+\begin{frame}{In vivo Genome Editing in Neuronal Cells: Experimental Setup (*explain*)}
+  % Presenter Version: Bullet points for explanation
+  \only<beamer>{
+      \begin{itemize}
+        \item **Panel e,f** shows the repair template design targeting the Tubb2a gene, using trimology sequences to predict specific deletions (Δ3, Δ6, Δ9) in Tubb2a.
+          \item **panel a** shows Design strategy using *Pythia* to target the Tubb2a gene with CRISPR/Cas9 and repair templates.
+          \item **panel b**: Injection setup in mouse brain regions (V1 and hippocampus) for precise targeting.
+      \end{itemize}
+      \note{
+          Describe the design of the CRISPR/Cas9 strategy for targeting Tubb2a in mouse brain cells, including the use of trimology-based repair templates. Explain the brain injection setup and how tissue staining with mCherry and GFP confirms localization at the target sites (V1 and hippocampus).
+      }
+  }
+
+  % Audience Version: Image only
+  \only<handout>{
+      \begin{figure}
+          \centering
+          \hspace{-3em} % Move the image slightly to the left if needed
+          \includegraphics[width=0.7\textwidth]{fig/present/fig4_1.jpeg} % First part of Figure 4
+          \caption{\small CRISPR/Cas9 design for Tubb2a targeting (a), injection setup in brain regions (b), \textit{trimology} sequence and predicted deletions (Δ3, Δ6, Δ9)(4e,f).}
+      \end{figure}
+  }
+\end{frame}
+
+\begin{frame}{Repair Outcomes and Neuronal Localization}
+  % Presenter Version: Bullet points for explanation
+  \only<beamer>{
+    \begin{itemize}
+      \item The figure shows Efficiency of repair across both brain hemispheres, demonstrating reliable on-target editing.
+      \item The high-resolution images also confirm successful localization of edits within cortical and hippocampal neurons.
+  \end{itemize}      
+  \note{
+          Discuss the experimental outcomes shown in Figure e, where trimology-based repair generates specific small deletions in the Tubb2a gene. Highlight the high efficiency of repair (4f) across brain hemispheres. Use Figures g and h to illustrate the precise localization of edits in cortical and hippocampal neurons, confirming Pythia’s specificity and precision.
+      }
+  }
+
+  % Audience Version: Image only
+  \only<handout>{
+      \begin{figure}
+          \centering
+          \hspace{-3em} % Move the image slightly to the left if needed
+          \includegraphics[width=\textwidth]{fig/present/fig4_2.jpeg} % Second part of Figure 4
+          \caption{\small Trimology-based repair outcomes (e, f) and high-resolution neuronal localization (g, h), confirming precision in cortical and hippocampal neurons.}
+      \end{figure}
+  }
+\end{frame}
+
+\begin{frame}{Deep Learning Prediction Model for Single Nucleotide Edits (*explain*)}
+  % Presenter Version: Bullet points for explanation
+  \only<beamer>{
+      \begin{itemize}
+          \item The Pythia model also uses its deep learning model to predict and design single nucleotide edits, here the authors Demonstrate the convertion of eGFP to eBFP.
+          \item Deep learning selects optimal gRNAs and repair template designs based on SNP location. (*explain*)
+          \item the scoring system for repair arms, optimizes the edit based on predicted left and right junction outcomes. (*Explain*)
+          \item So, the Pythia matrix helps us find the optimal length for the repair arms.
+      \end{itemize}
+      \note{
+          Explain how Pythia uses a deep learning approach to predict and design single nucleotide edits, such as converting eGFP to eBFP. Emphasize the scoring system for repair arms, which optimizes the edit based on predicted left and right junction outcomes.
+      }
+  }
+
+  % Audience Version: Image only
+  \only<handout>{
+      \begin{figure}
+          \centering
+          \includegraphics[width=0.7\textwidth]{fig/present/fig5_1.jpeg} % Replace with the path to fig5_1.jpeg
+          \caption{\small Prediction model for single nucleotide editing to convert eGFP to eBFP, using deep learning to guide template design.}
+      \end{figure}
+  }
+\end{frame}
+
+\begin{frame}{Experimental Validation for Single Nucleotide Editing (*explain*)}
+  % Presenter Version: Bullet points for explanation
+  \only<beamer>{
+      \begin{itemize}
+          \item This eGFP to eBFP conversion was demonstrated Experimentally.
+          \item The predicted deep learning model for the conversion of GFP to BFG was implemented comparing three different Pythia scores. 
+          \item The SNP-based conversion was then confirmed through flow cytometry, aligning with Pythia’s high prediction scores.
+          \item Higher Pythia scores are associated with greater SNP conversion efficiency.
+      \end{itemize}
+      \note{
+          Describe the experimental validation setup where Pythia predictions for single nucleotide edits are tested by converting eGFP to eBFP. Flow cytometry results show that higher Pythia scores lead to higher editing efficiency, confirming the accuracy of predictions.
+      }
+  }
+
+  % Audience Version: Image only
+  \only<handout>{
+      \begin{figure}
+          \centering
+          \includegraphics[width=0.7\textwidth]{fig/present/fig5_2.jpeg} % Replace with the path to fig5_2.jpeg
+          \caption{\small Experimental validation of single nucleotide conversion (eGFP to eBFP) using Pythia’s optimized templates and flow cytometry analysis.}
+      \end{figure}
+  }
+\end{frame}
+\begin{frame}{Correlation of Pythia Scores with SNP Editing Efficiency (*explain-quick*)}
+  % Presenter Version: Bullet points for explanation
+  \only<beamer>{
+      \begin{itemize}
+          \item Scatter plot also confirmed a significant correlation between Pythia scores and successful SNP conversion rates (panel d).
+          \item Which means that higher Pythia scores correlate strongly with higher conversion efficiencies for precise SNP editing (panel e)
+          \item This finding validated Pythia’s reliability for predicting SNP editing outcomes.
+      \end{itemize}
+      \note{
+          Highlight the correlation between Pythia scores and editing efficiency shown in Figure d. Explain that a higher Pythia score aligns with higher SNP conversion rates, validating Pythia’s accuracy for single nucleotide predictions.
+      }
+  }
+
+  % Audience Version: Image only
+  \only<handout>{
+      \begin{figure}
+          \centering
+          \includegraphics[width=1\textwidth]{fig/present/fig5_3.jpeg} % Replace with the path to fig5_3.jpeg
+          \caption{\small Correlation between Pythia scores and successful SNP conversion rates, supporting predictive accuracy.}
+      \end{figure}
+  }
+\end{frame}
+\begin{frame}{Clinical Application for SNP Corrections in RPE65 Gene Therapy (*explain*-quick)}
+  % Presenter Version: Bullet points for explanation
+  \only<beamer>{
+      \begin{itemize}
+          \item The authors also applied Pythia on to the RPE65 gene for single nucleotide mutation correction.
+          \item The Pythia scores identified optimal repair arm lengths to maximize editing accuracy.
+          \item This demonstrated Pythia’s potential for potential for designing precise therapeutic templates for single nucleotide corrections in clinical gene therapy.
+      \end{itemize}
+      \note{
+          Describe how Pythia applies to the RPE65 gene to guide SNP corrections associated with genetic conditions like Leber congenital amaurosis. Emphasize the tool’s potential for designing precise therapeutic templates for single nucleotide corrections.
+      }
+  }
+
+  % Audience Version: Image only
+  \only<handout>{
+      \begin{figure}
+          \centering
+          \includegraphics[width=1.1\textwidth]{fig/present/fig5_4.jpeg} % Replace with the path to fig5_4.jpeg
+          \caption{\small Clinical application of Pythia for precise SNP corrections in RPE65 gene therapy, relevant to Leber congenital amaurosis.}
+      \end{figure}
+  }
+\end{frame}
+% Conclusion Slide
+\begin{frame}{Conclusion}
+  \begin{itemize}
+      \item \textbf{Precision in CRISPR Editing}
+          \begin{itemize}
+              \item InDelphi + Pythia enable controlled, predictable edits
+              \item Effective near microhomology regions for guided repairs
+          \end{itemize}
+      
+      \item \textbf{Clinical Suitability}
+          \begin{itemize}
+              \item Suitable for single-gene corrections with accessible PAM sites
+              \item Challenges: Complexity in repetitive regions, off-target risks
+          \end{itemize}
+      
+      \item \textbf{Key Applications}
+          \begin{itemize}
+              \item Therapeutic gene editing (e.g., RPE65-related diseases)
+              \item High-fidelity gene tagging in research
+              \item Improved precision in gene drive systems
+          \end{itemize}
+  \end{itemize}
+\end{frame}
+% Thank You Slide
+\begin{frame}
+  \centering
+  \Huge{Thank You!}
+\end{frame}
+\end{document}

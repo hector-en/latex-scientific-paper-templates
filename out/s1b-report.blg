@@ -1,15 +1,5 @@
 [0] Config.pm:307> INFO - This is Biber 2.17
 [0] Config.pm:310> INFO - Logfile is './out/s1b-report.blg'
-[113] biber:340> INFO - === Mon Nov  4, 2024, 14:56:28
-[137] Biber.pm:418> INFO - Reading './out/s1b-report.bcf'
-[230] Biber.pm:972> INFO - Found 1 citekeys in bib section 0
-[251] Biber.pm:4383> INFO - Processing section 0
-[263] Biber.pm:4574> INFO - Looking for bibtex file 'bib/s1b.bib' for section 0
-[265] bibtex.pm:1713> INFO - LaTeX decoding ...
-[278] bibtex.pm:1518> INFO - Found BibTeX data source 'bib/s1b.bib'
-[346] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[346] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[346] Biber.pm:4203> INFO - Sorting list 'apa/global//global/global' of type 'entry' with template 'apa' and locale 'en-US'
-[346] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
-[354] bbl.pm:654> INFO - Writing './out/s1b-report.bbl' with encoding 'UTF-8'
-[357] bbl.pm:757> INFO - Output to ./out/s1b-report.bbl
+[106] biber:340> INFO - === Fri Nov  8, 2024, 09:08:34
+[303] Utils.pm:398> ERROR - Cannot find './out/s1b-report.bcf'!
+[304] Biber.pm:135> INFO - ERRORS: 1
